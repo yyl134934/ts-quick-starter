@@ -1,0 +1,129 @@
+{
+  "name": "ts",
+  "version": "1.0.0",
+  "description": "typescript",
+  "main": "index.js",
+  "scripts": {
+    "common": "cross-env NODE_ENV=development webpack --config ./scripts/config/webpack.common.js",
+    "server": "cross-env NODE_ENV=development node scripts/server",
+    "start": "cross-env NODE_ENV=production webpack serve --config ./scripts/config/webpack.dev.js",
+    "build": "cross-env NODE_ENV=production webpack --config ./scripts/config/webpack.prod.js",
+    "lint": "npm run lint-eslint && npm run lint-stylelint",
+    "lint-eslint": "eslint -c .eslintrc.js --ext .ts,.tsx,.js src",
+    "lint-stylelint": "stylelint --config .stylelintrc.js src/**/*.{less,css,scss}",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint --config .commitlintrc.js -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js}": [
+      "eslint --config .eslintrc.js"
+    ],
+    "*.{css,less,scss}": [
+      "stylelint --config .stylelintrc.js"
+    ],
+    "*.{ts,tsx,js,json,html,yml,css,less,scss,md}": [
+      "prettier --write"
+    ]
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "ie >= 11",
+    "not op_mini all"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yyl134934/ts.git"
+  },
+  "keywords": [],
+  "author": "junger",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yyl134934/ts/issues"
+  },
+  "homepage": "https://github.com/yyl134934/ts#readme",
+  "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "@babel/plugin-transform-runtime": "^7.14.5",
+    "@babel/preset-env": "^7.14.7",
+    "@babel/preset-react": "^7.14.5",
+    "@babel/preset-typescript": "^7.14.5",
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-conventional": "^12.1.4",
+    "@types/react": "^17.0.11",
+    "@types/react-dom": "^17.0.8",
+    "@types/webpack-env": "^1.16.0",
+    "@typescript-eslint/eslint-plugin": "^4.28.0",
+    "@typescript-eslint/parser": "^4.28.0",
+    "autoprefixer": "^10.2.6",
+    "babel-loader": "^8.2.2",
+    "babel-plugin-import": "^1.13.3",
+    "chalk": "^4.1.1",
+    "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "conventional-changelog-cli": "^2.1.1",
+    "copy-webpack-plugin": "^9.0.0",
+    "cross-env": "^7.0.3",
+    "css-loader": "^5.2.6",
+    "css-minimizer-webpack-plugin": "^3.0.2",
+    "dayjs": "^1.10.5",
+    "detect-port": "^1.3.0",
+    "detect-port-alt": "^1.1.6",
+    "eslint": "^7.29.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-typescript": "^2.4.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-unicorn": "^29.0.0",
+    "file-loader": "^6.2.0",
+    "fork-ts-checker-webpack-plugin": "^6.2.12",
+    "glob": "^7.1.7",
+    "html-webpack-plugin": "^5.3.2",
+    "husky": "^6.0.0",
+    "ip": "^1.1.5",
+    "is-root": "^3.0.0",
+    "less": "^4.1.1",
+    "less-loader": "^10.0.0",
+    "lint-staged": "^11.0.0",
+    "mini-css-extract-plugin": "^1.6.0",
+    "postcss": "^8.3.5",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-loader": "^6.1.0",
+    "postcss-normalize": "^10.0.0",
+    "postcss-preset-env": "^6.7.0",
+    "prettier": "^2.3.1",
+    "purgecss-webpack-plugin": "^4.0.3",
+    "style-loader": "^2.0.0",
+    "stylelint": "^13.13.1",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-config-standard": "^22.0.0",
+    "stylelint-declaration-block-no-ignored-properties": "^2.3.0",
+    "stylelint-order": "^4.1.0",
+    "terser-webpack-plugin": "^5.1.3",
+    "typescript": "^4.3.4",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.40.0",
+    "webpack-bundle-analyzer": "^4.4.2",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2",
+    "webpack-merge": "^5.8.0",
+    "webpackbar": "^5.0.0-3"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs3": "^7.14.7",
+    "antd": "^4.16.5",
+    "axios": "^0.21.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
