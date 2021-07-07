@@ -7,11 +7,11 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
-const { isDev, PROJECT_PATH } = require('../constants');
+const { isDev, PROJECT_PATH, THEME } = require('../constants');
 
 const getCssLoaders = (importLoaders) => [
-  'style-loader',
-  // isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+  // 'style-loader',
+  isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
   {
     loader: 'css-loader',
     options: {
@@ -44,52 +44,50 @@ const getCssLoaders = (importLoaders) => [
 ];
 
 module.exports = {
+  // entry: { app: ['core-js', path.resolve(PROJECT_PATH, './src/index.tsx')] },
   entry: { app: path.resolve(PROJECT_PATH, './src/index.tsx') },
   target: 'web', // webpack 5之后需要指定，否则根据browserlist来定（影响热更新）
   output: {
     filename: `js/[name].${isDev ? '' : '[chunkhash:8]'}.js`,
     path: path.resolve(PROJECT_PATH, './dist'),
   },
-  externals: {
-    react: 'React',
-    'react-dom': 'ReactDOM',
-  },
+  // externals: {
+  //   // cdn配置，优化包的大小（网络不好切勿开启，会延长首屏加载时间）
+  //   react: 'React',
+  //   'react-dom': 'ReactDOM',
+  // },
   optimization: {
-    // splitChunks: {
-    //   chunks: 'all',
-    //   minSize: 20000,
-    //   minRemainingSize: 0,
-    //   minChunks: 1,
-    //   maxAsyncRequests: 30,
-    //   maxInitialRequests: 30,
-    //   enforceSizeThreshold: 50000,
-    //   cacheGroups: {
-    //     vendors: {
-    //       // 项目基本框架等
-    //       chunks: 'all',
-    //       test: /[/\\]node_modules[/\\]/,
-    //       priority: -10,
-    //       name: 'vendors',
-    //     },
-    //     'async-commons': {
-    //       // 异步加载公共包、组件等
-    //       chunks: 'async',
-    //       minChunks: 2,
-    //       name: 'async-commons',
-    //       priority: -20,
-    //     },
-    //     commons: {
-    //       // 其他同步加载公共包
-    //       chunks: 'all',
-    //       minChunks: 2,
-    //       name: 'commons',
-    //       priority: -30,
-    //     },
-    //   },
-    // },
     splitChunks: {
       chunks: 'all',
-      minSize: 0,
+      minSize: 20000,
+      minRemainingSize: 0,
+      minChunks: 1,
+      maxAsyncRequests: 30,
+      maxInitialRequests: 30,
+      enforceSizeThreshold: 50000,
+      cacheGroups: {
+        vendors: {
+          // 项目基本框架等
+          chunks: 'all',
+          test: /[/\\]node_modules[/\\]/,
+          priority: -10,
+          name: 'vendors',
+        },
+        'async-commons': {
+          // 异步加载公共包、组件等
+          chunks: 'async',
+          minChunks: 2,
+          name: 'async-commons',
+          priority: -20,
+        },
+        commons: {
+          // 其他同步加载公共包
+          chunks: 'all',
+          minChunks: 2,
+          name: 'commons',
+          priority: -30,
+        },
+      },
     },
     minimize: !isDev,
     minimizer: [
@@ -116,7 +114,9 @@ module.exports = {
       {
         test: /\.(tsx?|js)$/,
         loader: 'babel-loader',
-        options: { cacheDirectory: true }, // 缓存公共文件，提高编译效率
+        options: {
+          cacheDirectory: true,
+        },
         exclude: /node_modules/,
       },
       {
@@ -131,6 +131,11 @@ module.exports = {
             loader: 'less-loader',
             options: {
               sourceMap: isDev,
+              lessOptions: {
+                // 如果使用less-loader@5，请移除 lessOptions 这一级直接配置选项。
+                modifyVars: THEME.light,
+                javascriptEnabled: true,
+              },
             },
           },
         ],
@@ -201,6 +206,7 @@ module.exports = {
         filename: 'css/[name].[contenthash:8].css',
         chunkFilename: 'css/[name].[contenthash:8].css',
         ignoreOrder: false,
+        linkType: 'text/css',
       }),
   ],
 };

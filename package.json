@@ -38,7 +38,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yyl134934/ts.git"
+    "url": "git+http://github.com/yyl134934/ts.git"
   },
   "keywords": [],
   "author": "junger",
@@ -49,6 +49,22 @@
   "homepage": "https://github.com/yyl134934/ts#readme",
   "devDependencies": {
     "@babel/core": "^7.14.6",
+    "@babel/plugin-proposal-class-properties": "^7.14.5",
+    "@babel/plugin-proposal-decorators": "^7.14.5",
+    "@babel/plugin-proposal-do-expressions": "^7.14.5",
+    "@babel/plugin-proposal-export-default-from": "^7.14.5",
+    "@babel/plugin-proposal-export-namespace-from": "^7.14.5",
+    "@babel/plugin-proposal-function-bind": "^7.14.5",
+    "@babel/plugin-proposal-function-sent": "^7.14.5",
+    "@babel/plugin-proposal-json-strings": "^7.14.5",
+    "@babel/plugin-proposal-logical-assignment-operators": "^7.14.5",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.14.5",
+    "@babel/plugin-proposal-numeric-separator": "^7.14.5",
+    "@babel/plugin-proposal-optional-chaining": "^7.14.5",
+    "@babel/plugin-proposal-pipeline-operator": "^7.14.5",
+    "@babel/plugin-proposal-throw-expressions": "^7.14.5",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/plugin-syntax-import-meta": "^7.10.4",
     "@babel/plugin-transform-runtime": "^7.14.5",
     "@babel/preset-env": "^7.14.7",
     "@babel/preset-react": "^7.14.5",
@@ -101,7 +117,6 @@
     "postcss-normalize": "^10.0.0",
     "postcss-preset-env": "^6.7.0",
     "prettier": "^2.3.1",
-    "purgecss-webpack-plugin": "^4.0.3",
     "style-loader": "^2.0.0",
     "stylelint": "^13.13.1",
     "stylelint-config-prettier": "^8.0.2",
@@ -120,10 +135,14 @@
     "webpackbar": "^5.0.0-3"
   },
   "dependencies": {
+    "@babel/runtime": "^7.14.6",
     "@babel/runtime-corejs3": "^7.14.7",
     "antd": "^4.16.5",
     "axios": "^0.21.1",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.4",
+    "react-router-dom": "^5.2.0",
+    "redux": "^4.1.0"
   }
 }

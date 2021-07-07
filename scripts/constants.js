@@ -15,13 +15,13 @@ const ANALYZER_PORT = '8888';
 // Resource size limit
 const imageInlineSizeLimit = 4 * 1024;
 
-// const THEME = {
-//   light: {
-//     'primary-color': '#D33A3A',
-//     'link-color': '#1DA57A',
-//     'border-radius-base': '2px',
-//   },
-// };
+const THEME = {
+  light: {
+    'primary-color': '#D33A3A',
+    'link-color': '#1DA57A',
+    'border-radius-base': '2px',
+  },
+};
 
 module.exports = {
   PROJECT_PATH,
@@ -32,4 +32,5 @@ module.exports = {
   ANALYZER_HOST,
   ANALYZER_PORT,
   imageInlineSizeLimit,
+  THEME,
 };
