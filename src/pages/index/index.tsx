@@ -49,7 +49,7 @@ interface DinnerList {
   nostaple: string[];
 }
 
-const defaultDinnerList = {
+const defaultDinnerList:DinnerList = {
   staple: [],
   nostaple: [],
 };
